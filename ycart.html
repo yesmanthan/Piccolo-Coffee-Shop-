@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>Coffee Shop - Add to Cart & Buy Now</title>
+  <style>
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .coffee-item {
+      border: 1px solid #ccc;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .coffee-item h3 {
+      margin-top: 0;
+    }
+
+    .coffee-item p {
+      margin-bottom: 0;
+    }
+
+    .coffee-item .btn {
+      margin-top: 10px;
+    }
+
+    #cartItems {
+      margin-top: 40px;
+    }
+
+    #cartItems ul {
+      padding: 0;
+    }
+
+    #cartItems li {
+      list-style-type: none;
+    }
+
+    #totalPrice {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    #checkoutBtn {
+      margin-top: 10px;
+      background-color: #025ff5;
+      text-decoration-color: #ccc;
+      
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Coffee Shop</h1>
+
+    <div class="coffee-item">
+      <h3>Espresso</h3>
+      <p>Intense and aromatic single shot espresso.</p>
+      <p>Price: $2.99</p>
+      <button class="btn btn-primary addToCart" data-item="Espresso" data-price="2.99">Add to Cart</button>
+      <button class="btn btn-success buyNow" data-item="Espresso" data-price="2.99">Buy Now</button>
+    </div>
+
+    <div class="coffee-item">
+      <h3>Cappuccino</h3>
+      <p>Rich espresso combined with frothed milk and a dusting of cocoa powder.</p>
+      <p>Price: $3.99</p>
+      <button class="btn btn-primary addToCart" data-item="Cappuccino" data-price="3.99">Add to Cart</button>
+      <button class="btn btn-success buyNow" data-item="Cappuccino" data-price="3.99">Buy Now</button>
+    </div>
+
+    <div class="coffee-item">
+      <h3>Latte</h3>
+      <p>Smooth espresso blended with steamed milk and topped with foamed milk.</p>
+      <p>Price: $4.99</p>
+      <button class="btn btn-primary addToCart" data-item="Latte" data-price="4.99">Add to Cart</button>
+      <button class="btn btn-success buyNow" data-item="Latte" data-price="4.99">Buy Now</button>
+    </div>
+
+    <div class="coffee-item">
+      <h3>Mocha</h3>
+      <p>Espresso combined with chocolate syrup, steamed milk, and topped with whipped cream.</p>
+      <p>Price: $4.49</p>
+      <button class="btn btn-primary addToCart" data-item="Mocha" data-price="4.49">Add to Cart</button>
+      <button class="btn btn-success buyNow" data-item="Mocha" data-price="4.49">Buy Now</button>
+    </div>
+
+    <div id="cartItems">
+      <h2>Cart Items</h2>
+      <ul id="cartList"></ul>
+      <div id="totalPrice"></div>
+      <button id="checkoutBtn" class="btn btn-primary" disabled ><a href="ypayment.html" button="checkout"> </a>checkout</button> 
+    </div>
+  </div>
+
+  <script>
+    var cartItems = [];
+
+    var cartList = document.getElementById('cartList');
+    var totalPrice = document.getElementById('totalPrice');
+    var checkoutBtn = document.getElementById('checkoutBtn');
+
+    function updateCart() {
+      cartList.innerHTML = '';
+      var total = 0;
+
+      cartItems.forEach(function (item) {
+        var li = document.createElement('li');
+        li.textContent = item.name + ' - $' + item.price.toFixed(2);
+        cartList.appendChild(li);
+        total += item.price;
+      });
+
+      totalPrice.textContent = 'Total Payable Amount: $' + total.toFixed(2);
+
+      if (cartItems.length > 0) {
+        checkoutBtn.disabled = false;
+      } else {
+        checkoutBtn.disabled = true;
+      }
+    }
+
+    function addToCart(event) {
+      var item = event.target.dataset.item;
+      var price = parseFloat(event.target.dataset.price);
+      cartItems.push({ name: item, price: price });
+      updateCart();
+    }
+
+    function buyNow(event) {
+      var item = event.target.dataset.item;
+      var price = parseFloat(event.target.dataset.price);
+      cartItems = [{ name: item, price: price }];
+      updateCart();
+    }
+
+    function checkout() {
+      // Perform checkout logic here
+      alert('Checkout completed successfully!');
+      cartItems = [];
+      updateCart();
+    }
+
+    var addToCartButtons = document.getElementsByClassName('addToCart');
+    for (var i = 0; i < addToCartButtons.length; i++) {
+      addToCartButtons[i].addEventListener('click', addToCart);
+    }
+
+    var buyNowButtons = document.getElementsByClassName('buyNow');
+    for (var i = 0; i < buyNowButtons.length; i++) {
+      buyNowButtons[i].addEventListener('click', buyNow);
+    }
+
+    checkoutBtn.addEventListener('click', checkout);
+  </script>
+</body>
+
+</html>

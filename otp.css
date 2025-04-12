@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Inter;
+}
+body {
+  width: 100%;
+  background: #ffffff;
+  color: #000000;
+}
+section {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container {
+  border-radius: 12px;
+  background-color: rgb(255, 255, 255);
+  width: 90%;
+  max-width: 500px;
+  padding: 50px 20px;
+  text-align: center;
+}
+.title {
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+#otp-form {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+#otp-form input {
+  border: none;
+  background-color: #fefefe;
+  color: rgb(3, 3, 3);
+  font-size: 32px;
+  text-align: center;
+  padding: 10px;
+  width: 100%;
+  max-width: 70px;
+  height: 70px;
+  border-radius: 4px;
+  outline: 2px solid rgb(0, 0, 0);
+}
+#otp-form input:focus-visible {
+  outline: 2px solid royalblue;
+}
+#otp-form input.filled {
+  outline: 2px solid rgb(246, 247, 247);
+}
+#verify-btn {
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 30px;
+  background: rgb(249, 249, 249);
+  color: white;
+  padding: 7px 10px;
+  border-radius: 4px;
+  font-size: 16px;
+  border: none;
+}
